@@ -9,16 +9,14 @@ public class Point2d extends AbstractPoint {
      * @param x X coordinate
      * @param y Y coordinate
      */
-    public Point2d(Double x, Double y) {
-        super(new double[] {0.0, 0.0});
-    }
+    public Point2d(Double x, Double y) {super(new double[] {x, y});}
 
     /** TODO
      * 2D Point Constructor from vector
      * @param vector Vector containing X and Y coordinates
      */
     public Point2d(Double[] vector) {
-        this(0.0, 0.0);
+        super(new double[]{vector[0],vector[1]});
     }
 
     /**
@@ -38,7 +36,10 @@ public class Point2d extends AbstractPoint {
      */
     @Override
     public Point2d translate(Double[] translateVector) {
-        return null;
+        // Write if there is an exception (length < 2 or the given vector is null)
+        this.vector[X] += translateVector[X];
+        this.vector[Y] += translateVector[Y];
+        return this;
     }
 
     /** TODO
@@ -47,7 +48,9 @@ public class Point2d extends AbstractPoint {
      * @return Translated point
      */
     public Point2d translate(Point2d translateVector) {
-        return null;
+         this.vector[X] += translateVector.X();
+         this.vector[Y] += translateVector.Y();
+         return this;
     }
 
     /** TODO
@@ -57,7 +60,13 @@ public class Point2d extends AbstractPoint {
      */
     @Override
     public Point2d rotate(Double[][] rotationMatrix) {
-        return null;
+        double rotatedX = rotationMatrix[X][X] * this.vector[X] +
+                          rotationMatrix[X][Y] * this.vector[Y];
+        double rotatedY = rotationMatrix[Y][X] * this.vector[X] +
+                          rotationMatrix[Y][Y] * this.vector[Y];
+        this.vector[X] = rotatedX;
+        this.vector[Y] = rotatedY;
+        return this;
     }
 
     /** TODO
@@ -66,7 +75,12 @@ public class Point2d extends AbstractPoint {
      * @return Rotated point
      */
     public Point2d rotate(Double angle) {
-        return null;
+        double originalXCoordinate = this.vector[X];
+        double newX = this.vector[X] * Math.cos(angle) - (this.vector[Y] * Math.sin(angle));
+        double newY = this.vector[Y] * Math.cos(angle) + (originalXCoordinate * Math.sin(angle));
+        this.vector[X] = newX;
+        this.vector[Y] = newY;
+        return this;
     }
 
     /** TODO
@@ -76,7 +90,9 @@ public class Point2d extends AbstractPoint {
      */
     @Override
     public Point2d divide(Double divider) {
-        return null;
+        this.vector[X] /= divider;
+        this.vector[Y] /= divider;
+        return this;
     }
 
     /** TODO
@@ -86,7 +102,9 @@ public class Point2d extends AbstractPoint {
      */
     @Override
     public Point2d multiply(Double multiplier) {
-        return null;
+        this.vector[X] *= multiplier;
+        this.vector[Y] *= multiplier;
+        return this;
     }
 
     /** TODO
@@ -96,7 +114,9 @@ public class Point2d extends AbstractPoint {
      */
     @Override
     public Point2d add(Double adder) {
-        return null;
+        this.vector[X] += adder;
+        this.vector[Y] += adder;
+        return this;
     }
 
     /** TODO
@@ -104,6 +124,7 @@ public class Point2d extends AbstractPoint {
      */
     @Override
     public Point2d clone() {
-        return null;
+        Point2d deepCopy = new Point2d(this.X(),this.Y());
+        return deepCopy;
     }
 }
