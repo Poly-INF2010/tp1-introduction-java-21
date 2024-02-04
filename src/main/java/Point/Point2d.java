@@ -36,7 +36,6 @@ public class Point2d extends AbstractPoint {
      */
     @Override
     public Point2d translate(Double[] translateVector) {
-        // Write if there is an exception (length < 2 or the given vector is null)
         this.vector[X] += translateVector[X];
         this.vector[Y] += translateVector[Y];
         return this;
