@@ -78,9 +78,6 @@ public class BaseShape extends Transform implements Cloneable {
      */
     public BaseShape remove(BaseShape shape) {
 
-
-
-
         for(Point2d point : shape.getCoords()){
             if(coords.contains(point)){
                 coords.remove(point);
@@ -105,14 +102,17 @@ public class BaseShape extends Transform implements Cloneable {
      * @param newCoords new coords to replace the old one
      * @return Updated BaseShape
      * */
-    public BaseShape replaceAll(Collection<Point2d> newCoords) { return null; }
+    public BaseShape replaceAll(Collection<Point2d> newCoords) {
+        this.removeAll(coords);
+        this.addAll(newCoords);
+        return this; }
 
     /** TODO
      * Return a shallow copy of the coordinates of the shape
      * @return Shallow copy of all coordinates contained by this BaseShape
      */
     public Collection<Point2d> getCoords() {
-        Collection<Point2d> copy = new ArrayList<>();
+        Collection<Point2d> copy = new ArrayList<Point2d>();
         for (Point2d point: coords) {
             copy.add(point);
         }
