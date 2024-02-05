@@ -76,7 +76,7 @@ public class Point2d extends AbstractPoint {
     public Point2d rotate(Double angle) {
         double originalXCoordinate = this.vector[X];
         double newX = this.vector[X] * Math.cos(angle) - (this.vector[Y] * Math.sin(angle));
-        double newY = this.vector[Y] * Math.cos(angle) + (originalXCoordinate * Math.sin(angle));
+        double newY = (originalXCoordinate * Math.sin(angle)) + this.vector[Y] * Math.cos(angle);
         this.vector[X] = newX;
         this.vector[Y] = newY;
         return this;
