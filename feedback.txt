@@ -1,0 +1,8 @@
+Points	3/5
+Formes	5/5
+Lettres	5/5
+Qualité de code et Design	4/5
+Total	17/20
+
+Non utilisation des methodes classiques de PointOperator dans Point2D -2
+Duplication de code -1
